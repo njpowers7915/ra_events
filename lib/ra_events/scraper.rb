@@ -1,0 +1,4 @@
+class RaEvents::Scraper
+  
+  
+end
