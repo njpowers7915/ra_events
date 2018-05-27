@@ -35,19 +35,22 @@ class RaEvents::CLI
     end
   end
   
+  def url_creator(input)
+    state = input.downcase.gsub(/\s+/, "")
+    date = Time.now.strftime("%Y-%m-%d")
+    url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
+  end
+  
   def valid_state?(input)
-    
     # True if valid url can be made from input
-    true
     # Need to make a special step for "Washington". URL's on RA website are "washingtondc" or "washingtonstate"
+    true
   end
   
   def event_list(state)
     #list of events in a particular state
     #Will plug state into a URL and send that off to Scraper
     #Scraper will return results
-    date = Time.now.strftime("%Y-%m-%d")
-    url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
     #Event.new_from_url will need url argument
     RaEvents::Event.all.each do |i|
       puts "1. #{i.name} -- #{i.date} -- #{i.city}"
@@ -117,6 +120,8 @@ class RaEvents::CLI
       exit!
     end
   end
+  
+  STATES = ["alabama", "alaska", "arizona", "arkansas", "california", "colorado", "delaware", "florida", "georgia", "hawaii", "idaho", "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maine", "maryland", "massachusetts", "michigan", "minnesota", "mississippi", "missouri", "montana", "nebraska", "nevada", "newhampshire", "newjersey", "newmexico", "newyork", "northcarolina", "northdakota", "ohio", "oklahoma", "oregon", "pennsylvania", "rhodeisland", "southcarolina", "southdakota", "tennessee", "texas", "utah", "vermont", "virginia", "washington", "westvirginia", "wisconsin", "wyoming"]
     
 end
 
