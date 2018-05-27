@@ -8,14 +8,14 @@ class RaEvents::CLI
   
   def start
     search_by_state
-    #select_event
+    select_event
     #option_menu
   end
   
   def search_by_state
     puts "Please enter the name of the state where you would like to see a show: "
     input = gets.strip.downcase
-    if valid?(input) == false
+    if valid_state?(input) == false
       puts "Invalid state name"
       sleep(1)
       puts
@@ -30,7 +30,7 @@ class RaEvents::CLI
   
   def valid_state?(input)
     # True if valid url can be made from input
-    false
+    true
   end
   
   def event_list(state)
@@ -44,13 +44,13 @@ class RaEvents::CLI
   def select_event
     puts "Please enter event number"
     input = gets.strip
-    if valid?(input) == false
+    if valid_number?(input) == false
       puts "Invalid number"
       sleep(1)
       puts
       select_event
     else
-      event_details(state)
+      event_details(input)
     #if input is valid, then method will return event_details
     #if input is not valid, user will be asked to try again
     end
@@ -58,13 +58,20 @@ class RaEvents::CLI
   
   def valid_number?(input)
     # True if input is not greater than the length of the event list
-    true
+    false
   end
   
   def event_details(input)
     #list of event attriburtes
+    puts "name"
+    puts "url"
+    puts "date"
+    puts "city"
+    puts "venue"
+    puts "Cost: "
+    puts "Minimum Age: "
+    puts "Ticket URL: "
     #Attributes in returned list:
-        #name, url, date, city, venue, cost, minimum_age, ticket_url
   end
         
   def option_menu
