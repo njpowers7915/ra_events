@@ -1,3 +1,5 @@
+require 'pry'
+
 class RaEvents::CLI
   
   def call
@@ -69,14 +71,14 @@ class RaEvents::CLI
   
   def event_details(input)
     #list of event attriburtes
-    puts "name"
-    puts "url"
-    puts "date"
-    puts "city"
-    puts "venue"
-    puts "Cost: "
-    puts "Minimum Age: "
-    puts "Ticket URL: "
+    puts "#{event.name}"
+    puts "#{event.url}"
+    puts "#{event.date}"
+    puts "#{event.city}"
+    puts "#{event.venue}"
+    puts "Cost: #{event.price}"
+    puts "Minimum Age: #{event.min_age}"
+    puts "Ticket URL: #{event.ticket_url}"
   end
         
   def option_menu
@@ -105,6 +107,7 @@ class RaEvents::CLI
   end
     
 end
+binding.pry
 
 # CLI series of Events
 
