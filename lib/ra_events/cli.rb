@@ -22,7 +22,6 @@ class RaEvents::CLI
       sleep(1)
       puts
       search_by_state
-    elsif 
     else
       state = input
       event_list(state)
@@ -107,7 +106,6 @@ class RaEvents::CLI
   end
     
 end
-binding.pry
 
 # CLI series of Events
 
