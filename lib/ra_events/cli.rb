@@ -38,14 +38,16 @@ class RaEvents::CLI
   end
   
   def event_list(state)
-    date = Time.now.strftime("%Y-%m-%d")
-    url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
     #list of events in a particular state
     #Will plug state into a URL and send that off to Scraper
     #Scraper will return results
-    puts "1. event_name_1 -- date_1 -- city_1"
-    puts "2. event_name_1 -- date_1 -- city_1"
-    puts "3. event_name_1 -- date_1 -- city_1"
+    date = Time.now.strftime("%Y-%m-%d")
+    url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
+    #Event.new_from_url will need url argument
+    event = RaEvents::Event.new_from_url
+    puts "1. #{event.name} -- #{event.date} -- #{event.city}"
+    #puts "2. event_name_1 -- date_1 -- city_1"
+    #puts "3. event_name_1 -- date_1 -- city_1"
   end
   
   def select_event
@@ -71,13 +73,13 @@ class RaEvents::CLI
   def event_details(input)
     #list of event attriburtes
     puts "#{event.name}"
-    puts "#{event.url}"
+    #puts "#{event.url}"
     puts "#{event.date}"
     puts "#{event.city}"
-    puts "#{event.venue}"
-    puts "Cost: #{event.price}"
-    puts "Minimum Age: #{event.min_age}"
-    puts "Ticket URL: #{event.ticket_url}"
+    #puts "#{event.venue}"
+    #puts "Cost: #{event.price}"
+    #puts "Minimum Age: #{event.min_age}"
+    #puts "Ticket URL: #{event.ticket_url}"
   end
         
   def option_menu

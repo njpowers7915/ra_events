@@ -5,13 +5,19 @@ class RaEvents::Event
   @@all = []
   
   def self.new_from_url # will need url as argument
+    #Will need to loop through all events on a page and create objects for each
     self.new("Event name", "Event Date", "City")
+  end
   
-  def initialize(name=nil, date=nil, city=nil)
+  def initialize(name, date, city)
     @name = name
     @date = date
     @city = city
     @@all << self
+  end
+  
+  def self.all
+    @@all
   end
   
   def url
