@@ -3,12 +3,17 @@ class RaEvents::CLI
   def call
     puts "Welcome to the Resident Advisor Event Finder!"
     puts "Overview of basic commands eg quit, new_state, etc..."
-    search_by_state
+    start
+  end
+  
+  def start
+    search_by_state(input)
   end
   
   def search_by_state(state_name)
     puts "Please enter the name of the state where you would like to see a show: "
     #takes in user input (state name) and returns event_list
+    event_list
   end
   
   def event_list
@@ -19,6 +24,7 @@ class RaEvents::CLI
   def select_event(event_number)
     puts "Please enter event number"
     #takes in user input (event_number) and returns event_details
+    event_details
   end
   
   def event_details
@@ -33,36 +39,36 @@ class RaEvents::CLI
     puts "To select another state, enter '2'"
     puts "To exit the app, enter 'exit'"
     input = gets.strip
-    if input = 1
+    if input == 1
       select_event(event_number)
-    elsif input = 2
+    elsif input == 2
       search_by_state(state_name)
-    elsif input = "exit"
+    elsif input == "exit"
       #quit application
     else
       puts "Invalid entry"
       puts option_menu
+    end
   end
     
 end
 
 # CLI series of Events
 
-call
-  Welcome user
-  Please enter name of state where you'd like to see show
+#call
+#  Welcome user
+#  Please enter name of state where you'd like to see show
   
-  User inputs name of state
+#  User inputs name of state
   
-  returns list of events
-  puts "Please pick an event"
+#  returns list of events
+#  puts "Please pick an event"
   
-  User inputs number corresponding to an event
+#  User inputs number corresponding to an event
   
-  returns event attributes
+#  returns event attributes
   
-  returns list of options for user to select
-  1. return to event list?
-  2. choose a different state?
-  3. quit?
-  
+#  returns list of options for user to select
+#  1. return to event list?
+#  2. choose a different state?
+#  3. quit?
