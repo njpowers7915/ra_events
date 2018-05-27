@@ -20,6 +20,7 @@ class RaEvents::CLI
       sleep(1)
       puts
       search_by_state
+    elsif 
     else
       state = input
       event_list(state)
@@ -29,13 +30,18 @@ class RaEvents::CLI
   end
   
   def valid_state?(input)
+    
     # True if valid url can be made from input
     true
+    # Need to make a special step for "Washington". URL's on RA website are "washingtondc" or "washingtonstate"
   end
   
   def event_list(state)
+    date = Time.now.strftime("%Y-%m-%d")
+    url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
     #list of events in a particular state
-    #Will take state as an argument because each state requires a different URL for scraping
+    #Will plug state into a URL and send that off to Scraper
+    #Scraper will return results
     puts "1. event_name_1 -- date_1 -- city_1"
     puts "2. event_name_1 -- date_1 -- city_1"
     puts "3. event_name_1 -- date_1 -- city_1"
