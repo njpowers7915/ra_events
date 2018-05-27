@@ -1,5 +1,3 @@
-require "ra_events/version"
+require_relative "./ra_events/version"
+require_relative "./ra_events/cli"
 
-module RaEvents
-  # Your code goes here...
-end

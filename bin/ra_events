@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "Hello"
+require "./lib/ra_events.rb"
+
+RaEvents::CLI.new.call
