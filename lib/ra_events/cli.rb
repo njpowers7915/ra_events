@@ -7,13 +7,18 @@ class RaEvents::CLI
   end
   
   def start
-    search_by_state(input)
+    search_by_state
+    select_event
+    option_menu
   end
   
-  def search_by_state(state_name)
+  def search_by_state
     puts "Please enter the name of the state where you would like to see a show: "
-    #takes in user input (state name) and returns event_list
-    event_list
+    input = gets.strip.downcase
+    #if input is a valid state name, then RA website URL will be valid
+        #Will return event_list
+    #if input is not a valid state name, RA website URL will not be valid
+        #Will ask user to try again
   end
   
   def event_list
@@ -48,6 +53,12 @@ class RaEvents::CLI
     else
       puts "Invalid entry"
       puts option_menu
+    end
+  end
+  
+  def quit?(input)
+    if input == "quit"
+      exit!
     end
   end
     
