@@ -8,24 +8,27 @@ class RaEvents::CLI
   
   def start
     search_by_state
-    select_event
-    option_menu
+    #select_event
+    #option_menu
   end
   
   def search_by_state
     puts "Please enter the name of the state where you would like to see a show: "
     input = gets.strip.downcase
-    #if input is a valid state name, then RA website URL will be valid
-        event_list(state)
-        #Will return event_list
-    #if input is not a valid state name, RA website URL will not be valid
-        puts "Invalid state name"
-        search by_state
-        #Will ask user to try again
+    if valid?(input) == false
+      puts "Invalid state name"
+      search_by_state
+    else
+      state = input
+      event_list(state)
+    #if input is a valid state name, then method will return event_list
+    #if input is not valid, user will be asked to try again
+    end
   end
   
-  def valid?
-    
+  def valid?(input)
+    # True if valid url can be made from input
+    true
   end
   
   def event_list(state)
