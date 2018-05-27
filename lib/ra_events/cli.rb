@@ -1,10 +1,15 @@
 require 'pry'
 
 class RaEvents::CLI
+  @event = nil
   
   def call
+    puts
     puts "Welcome to the Resident Advisor Event Finder!"
-    puts "Overview of basic commands eg quit, new_state, etc..."
+    puts
+    sleep(2)
+    #puts "Overview of basic commands eg quit, new_state, etc..."
+    puts
     start
   end
   
@@ -44,8 +49,8 @@ class RaEvents::CLI
     date = Time.now.strftime("%Y-%m-%d")
     url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
     #Event.new_from_url will need url argument
-    event = RaEvents::Event.new_from_url
-    puts "1. #{event.name} -- #{event.date} -- #{event.city}"
+    @event = RaEvents::Event.new_from_url
+    puts "1. #{@event.name} -- #{@event.date} -- #{@event.city}"
     #puts "2. event_name_1 -- date_1 -- city_1"
     #puts "3. event_name_1 -- date_1 -- city_1"
   end
@@ -67,10 +72,13 @@ class RaEvents::CLI
   
   def valid_number?(input)
     # True if input is not greater than the length of the event list
-    input.to_i > 0 || input.to_i <= event_array.length
+    
+    #input.to_i > 0 || input.to_i <= event_array.length
+    true
   end
   
   def event_details(input)
+    event = RaEvents::Event.find(input.to_i)
     #list of event attriburtes
     puts "#{event.name}"
     #puts "#{event.url}"
