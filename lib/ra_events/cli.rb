@@ -14,7 +14,7 @@ class RaEvents::CLI
   
   def search_by_state
     puts "Please enter the name of the state where you would like to see a show: "
-    input = gets.strip.downcase
+    input = gets.strip.downcase.gsub(/\s+/, "")
     if valid_state?(input) == false
       puts "Invalid state name"
       sleep(1)
