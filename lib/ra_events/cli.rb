@@ -16,14 +16,24 @@ class RaEvents::CLI
     puts "Please enter the name of the state where you would like to see a show: "
     input = gets.strip.downcase
     #if input is a valid state name, then RA website URL will be valid
+        event_list(state)
         #Will return event_list
     #if input is not a valid state name, RA website URL will not be valid
+        puts "Invalid state name"
+        search by_state
         #Will ask user to try again
   end
   
-  def event_list
+  def valid?
+    
+  end
+  
+  def event_list(state)
     #list of events in a particular state
-    #Format: 1. name - date - city - url - venue - ticket_url - cost - minimum_age
+    #Will take state as an argument because each state requires a different URL for scraping
+    puts "1. event_name_1 -- date_1 -- city_1"
+    puts "2. event_name_1 -- date_1 -- city_1"
+    puts "3. event_name_1 -- date_1 -- city_1"
   end
   
   def select_event(event_number)
@@ -35,7 +45,7 @@ class RaEvents::CLI
   def event_details
     #list of event attriburtes
     #Attributes in returned list:
-        #name, website_link, date, city, 
+        #name, url, date, city, venue, cost, minimum_age, ticket_url
   end
         
   def option_menu
