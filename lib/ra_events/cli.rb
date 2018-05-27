@@ -49,8 +49,10 @@ class RaEvents::CLI
     date = Time.now.strftime("%Y-%m-%d")
     url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
     #Event.new_from_url will need url argument
-    @event = RaEvents::Event.new_from_url
-    puts "1. #{@event.name} -- #{@event.date} -- #{@event.city}"
+    RaEvents::Event.all.each do |i|
+      puts "1. #{i.name} -- #{i.date} -- #{i.city}"
+    #@event = RaEvents::Event.new_from_url
+    #puts "1. #{@event.name} -- #{@event.date} -- #{@event.city}"
     #puts "2. event_name_1 -- date_1 -- city_1"
     #puts "3. event_name_1 -- date_1 -- city_1"
   end
@@ -73,17 +75,18 @@ class RaEvents::CLI
   def valid_number?(input)
     # True if input is not greater than the length of the event list
     
-    #input.to_i > 0 || input.to_i <= event_array.length
+    #input.to_i > 0 || input.to_i <= RaEvents:Event.all.length
     true
   end
   
   def event_details(input)
-    event = RaEvents::Event.find(input.to_i)
+    puts "Here are the event details"
+  #  event = RaEvents::Event.find(input.to_i)
     #list of event attriburtes
-    puts "#{event.name}"
+  #  puts "#{event.name}"
     #puts "#{event.url}"
-    puts "#{event.date}"
-    puts "#{event.city}"
+  #  puts "#{event.date}"
+  #  puts "#{event.city}"
     #puts "#{event.venue}"
     #puts "Cost: #{event.price}"
     #puts "Minimum Age: #{event.min_age}"
@@ -97,9 +100,9 @@ class RaEvents::CLI
     puts "To select another state, enter '2'"
     puts "To exit the app, enter 'exit'"
     input = gets.strip
-    if input == "1"
-      select_event(event_number)
-    elsif input == "2"
+    if input.to_i == 1
+      event_list(state)
+    elsif input.to_i == 2
       start
     elsif input == "exit"
       quit?(input)
