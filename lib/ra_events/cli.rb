@@ -9,7 +9,7 @@ class RaEvents::CLI
   def start
     search_by_state
     select_event
-    #option_menu
+    option_menu
   end
   
   def search_by_state
@@ -58,7 +58,7 @@ class RaEvents::CLI
   
   def valid_number?(input)
     # True if input is not greater than the length of the event list
-    false
+    true
   end
   
   def event_details(input)
@@ -76,19 +76,20 @@ class RaEvents::CLI
         
   def option_menu
     #returns list of options for user to select
+    sleep(2)
     puts "To return to the event list, enter '1'"
     puts "To select another state, enter '2'"
     puts "To exit the app, enter 'exit'"
     input = gets.strip
-    if input == 1
+    if input == "1"
       select_event(event_number)
-    elsif input == 2
-      search_by_state(state_name)
+    elsif input == "2"
+      start
     elsif input == "exit"
-      #quit application
+      quit?(input)
     else
       puts "Invalid entry"
-      puts option_menu
+      option_menu
     end
   end
   
