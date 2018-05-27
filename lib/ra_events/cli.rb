@@ -58,7 +58,7 @@ class RaEvents::CLI
   
   def valid_number?(input)
     # True if input is not greater than the length of the event list
-    true
+    input.to_i > 0 || input.to_i <= event_array.length
   end
   
   def event_details(input)
@@ -71,7 +71,6 @@ class RaEvents::CLI
     puts "Cost: "
     puts "Minimum Age: "
     puts "Ticket URL: "
-    #Attributes in returned list:
   end
         
   def option_menu
