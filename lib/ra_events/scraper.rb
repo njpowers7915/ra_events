@@ -2,8 +2,26 @@ class RaEvents::Scraper
   #Using EVENT_ARRAY as hardcoded test array.
   EVENT_ARRAY = [["name1", "date1", "city1"], ["name2", "date2", "city2"]]
   
+# Scraper receives state name from CLI to convert into a url
+  def state_url(state)
+    
+  end
+  
+# Scraper scrapes for events from interpolated state url
+# Returns list of event_urls to be scraped for details
+  def scrape_for_events(state_url)
+    
+  end
+  
+# Scraper scrapes for event details from event url
+# Returns array of hashes to be made into Event objects
+  def scrape_for_event_details(event_url)
+    
+  end
+  
+  
  # def state_url
-#    url = RaEvents::CLI.url_creator(state)
+ #  url = RaEvents::CLI.url_creator(state)
  #   Nokogiri::HTML(open(url))
 #  end
 
