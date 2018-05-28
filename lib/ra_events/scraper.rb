@@ -30,13 +30,14 @@ class RaEvents::Scraper
     #return array of hashes
  # end
   
-# Takes in array of hashes containing event details
+# Initializes Event object with a unique url
 # Returns array of event objects
   def make_events(state)
     state_url = state_url(state)
-    event_list = scrape_for_events(state_url)
-    hash_array = scrape_event_details(event_list)
-    RaEvents::Event.new_from_hash
+    event_list = scrape_events_by_state(state_url)
+    event_list.each do |i|
+      RaEvents::Event.new_from_state_url(i)
+    end
   end
     
     
@@ -53,9 +54,9 @@ class RaEvents::Scraper
 #  end
 
   
-  def self.find_event_url
-    state_url = RaEvents::CLI.state_url
-    Nokogiri::HTML(open("state_url"))
+#  def self.find_event_url
+#    state_url = RaEvents::CLI.state_url
+#    Nokogiri::HTML(open("state_url"))
 
   
 end
