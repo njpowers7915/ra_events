@@ -43,9 +43,9 @@ class RaEvents::CLI
     puts "Enter 1 for Washington (state)"
     puts "Enter 2 for Washington DC"
     user_choice = gets.strip
-    if user_choice = 1
+    if user_choice == 1
       state = "washingtonstate"
-    elsif user_choice = 2
+    elsif user_choice == 2
       state = "washingtondc"
     else
       puts "Invalid"
@@ -102,9 +102,7 @@ class RaEvents::CLI
   
   def valid_number?(input)
     # True if input is not greater than the length of the event list
-    
-    #input.to_i > 0 || input.to_i <= RaEvents:Event.all.length
-    true
+    input.to_i > 0 && input.to_i <= RaEvents::Event.all.length
   end
   
   def event_details(input)
