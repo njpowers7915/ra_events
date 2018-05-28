@@ -4,12 +4,15 @@ class RaEvents::Event
   
   @@all = []
   
-  def self.new_from_url(array) # will need url as argument
-    #Will need to loop through all events on a page and create objects for each
-    self.new(array[0], array[1], array[2])
+  
+  def self.new_from_state_url(state_url)
+    self.new(
+      state_url.#<CSS GOES HERE>
+      )
   end
   
-  def initialize(url)
+#Initialize with event's url only. Will scrape remaining details from this url
+  def initialize(url=nil)
     @url = url
     @@all << self
   end
@@ -18,12 +21,17 @@ class RaEvents::Event
     @@all
   end
   
+  def self.find(input)
+    @@all[input - 1]
+  end
+  
   def self.reset
     @@all = []
   end
   
-  def self.find(input)
-    @@all[input - 1]
+#Allows Scraper to access specific event's HTML
+  def doc
+    @doc ||= Nokogiri::HTML(open(self.url))
   end
   
   def name
