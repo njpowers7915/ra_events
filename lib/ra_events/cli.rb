@@ -109,12 +109,12 @@ class RaEvents::CLI
     #list of event attriburtes
     puts "#{event.name}"
     puts "#{event.url}"
-    puts "#{event.date}"
+    #puts "#{event.date}"
     puts "#{event.city}"
-    puts "#{event.venue}"
-    puts "Ticket Price: #{event.price}"
-    puts "Minimum Age: #{event.min_age}"
-    puts "Ticket URL: #{event.ticket_url}"
+   # puts "#{event.venue}"
+    #puts "Ticket Price: #{event.price}"
+   # puts "Minimum Age: #{event.min_age}"
+   # puts "Ticket URL: #{event.ticket_url}"
   end
        
 #Lets user go-back, search by another state, or quit

@@ -35,31 +35,31 @@ class RaEvents::Event
   end
   
   def name
-    @name ||= doc.css('') #.text?
+    @name ||= doc.css('header').css('h1').text
   end
   
   def city
-    @city ||= doc.css('') #.text?
+    @city ||= doc.css('li.wide').content
   end
   
-  def website_url
-    @website_url ||= doc.css('') #.text?
-  end
+  #def website_url
+  #  @website_url ||= doc.css('li.wide').css('a') #.text?
+  #end
   
-  def venue
-    @venue ||= doc.css('') #.text?
-  end
+  #def venue
+  #  @venue ||= doc.css('li.wide') #.text?
+  #end
   
-  def ticket_url
-    @ticket_url ||= doc.css('') #.text?
-  end
+ # def ticket_url
+ #   @ticket_url ||= doc.css('li.wide') #.text?
+ # end
   
-  def price
-    @price ||= doc.css('') #.text?
-  end
+ # def price
+ #   @price ||= doc.css('li.wide') #.text?
+ # end
   
-  def min_age
-    @min_age ||= doc.css('') #.text?
-  end
+  #def min_age
+  #  @min_age ||= doc.css('li.wide') #.text?
+ # end
   
 end
