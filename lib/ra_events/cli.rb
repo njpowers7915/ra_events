@@ -27,17 +27,24 @@ class RaEvents::CLI
       puts
       search_by_state
     elsif state == "washington"
-      puts "Enter 1 for Washington (state)"
-      puts "Enter 2 for Washington DC"
-      user_choice = gets.strip
-      if user_choice = 1
-        state = "washingtonstate"
-      elsif user_choice = 2
-        state = "washingtondc"
-      else
-        puts "Invalid"
+      washington_special_case
     else
       state
+    end
+    state
+  end
+  
+  def washington_special_case
+    puts "Enter 1 for Washington (state)"
+    puts "Enter 2 for Washington DC"
+    user_choice = gets.strip
+    if user_choice = 1
+      state = "washingtonstate"
+    elsif user_choice = 2
+      state = "washingtondc"
+    else
+      puts "Invalid"
+      washington_special_case
     end
     state
   end
