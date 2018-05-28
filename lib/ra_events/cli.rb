@@ -2,6 +2,7 @@ require 'pry'
 
 class RaEvents::CLI
   @event_list = []
+  @state_url = nil
   
   def call
     puts
@@ -80,7 +81,7 @@ class RaEvents::CLI
     #Scraper will return results
     #Event.new_from_url will need url argument
     RaEvents::Event.reset
-    url_creator(state)
+    @state_url = url_creator(state)
     RaEvents::Scraper.new.make_events
     count = 1
     RaEvents::Event.all.each do |i|
