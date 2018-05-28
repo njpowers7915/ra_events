@@ -29,10 +29,8 @@ class RaEvents::CLI
     puts "Please enter the name of the state where you would like to see a show: "
     input = gets.strip
     state = input_to_state(input)
-    RaEvents::Scraper.new.scrape_event_details(state)
-    
-    event_list(state)
-    event_list_display
+    event_array = RaEvents::Scraper.new.make_events(state)
+    event_list
   end
   
 # Takes in user input of a state name
@@ -73,28 +71,17 @@ class RaEvents::CLI
     state
   end
   
-  def event_list_display
-    @event_list.each do |i|
-      puts i
-    end
-  end
-  
-  def event_list(state)
-    #list of events in a particular state
-    #Will plug state into a URL and send that off to Scraper
-    #Scraper will return results
-    #Event.new_from_url will need url argument
-    RaEvents::Event.reset
-    @state_url = url_creator(state)
-    RaEvents::Scraper.new.make_events
+#Creates a list of all events in a given state with some basic details
+  def event_list
     count = 1
     RaEvents::Event.all.each do |i|
-      event =  "#{count}. #{i.name} -- #{i.date} -- #{i.city}"
-      @event_list.nil? ? @event_list = [event] : @event_list << [event]
+      puts "#{count}. #{i.name} -- #{i.date} -- #{i.city}"
       count += 1
     end
   end
   
+# User selects event from the event list
+# Returns all details of specified event
   def select_event
     puts "Please enter event number"
     input = gets.strip

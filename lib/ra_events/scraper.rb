@@ -46,8 +46,6 @@ class RaEvents::Scraper
  #   Nokogiri::HTML(open(url))
 #  end
 
-  def event_url
-    
   
   def self.find_event_url
     state_url = RaEvents::CLI.state_url
