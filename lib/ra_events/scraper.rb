@@ -15,8 +15,8 @@ class RaEvents::Scraper
   
 # Scraper scrapes for event details from event url
 # Returns array of hashes to be made into Event objects
-  def scrape_for_event_details(event_url)
-    
+  def scrape_event_details(state)
+    url = state_url(state)
   end
   
   

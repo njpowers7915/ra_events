@@ -23,15 +23,20 @@ class RaEvents::CLI
   end
 
 # Gets user_input of a state name
-# Returns a formatted version of the state name to be interpolated into URL by Scraper
+# Sends a formatted version of the state name to be interpolated into URL by Scraper
+# Returns list of events in a given state
   def search_by_state
     puts "Please enter the name of the state where you would like to see a show: "
     input = gets.strip
     state = input_to_state(input)
+    RaEvents::Scraper.new.scrape_event_details(state)
+    
     event_list(state)
     event_list_display
   end
   
+# Takes in user input of a state name
+# Returns formatted version to be interpolated into url
   def input_to_state(input)
     state = input.downcase.gsub(/\s+/, "")
     if valid_state?(state) == false
@@ -47,10 +52,12 @@ class RaEvents::CLI
     state
   end
   
+# Checks to make sure user input is the name of a state
   def valid_state?(state)
     STATES.include?(state)
   end
   
+# Differentiates between WA (state) and DC
   def washington_special_case
     puts "Enter 1 for Washington (state)"
     puts "Enter 2 for Washington DC"
