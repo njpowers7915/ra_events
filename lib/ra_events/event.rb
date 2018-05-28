@@ -4,9 +4,9 @@ class RaEvents::Event
   
   @@all = []
   
-  def self.new_from_url # will need url as argument
+  def self.new_from_url(array) # will need url as argument
     #Will need to loop through all events on a page and create objects for each
-    self.new("Event name", "Event Date", "City")
+    self.new(array[0], array[1], array[2])
   end
   
   def initialize(name, date, city)

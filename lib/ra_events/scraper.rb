@@ -10,7 +10,7 @@ class RaEvents::Scraper
   def make_events
     #Takes an array of scraped events. For each event in the array, a new Event object is created.
     EVENT_ARRAY.each do |i|
-      RaEvents::Event.new_from_url
+      RaEvents::Event.new_from_url(i)
     end
   end
   

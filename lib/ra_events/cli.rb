@@ -88,7 +88,6 @@ class RaEvents::CLI
       @event_list.nil? ? @event_list = [event] : @event_list << [event]
       count += 1
     end
-    @event_list
   end
   
   def select_event
