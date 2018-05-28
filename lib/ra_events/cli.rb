@@ -52,8 +52,10 @@ class RaEvents::CLI
     #Will plug state into a URL and send that off to Scraper
     #Scraper will return results
     #Event.new_from_url will need url argument
+    RaEvents::Scraper.new.make_events
     RaEvents::Event.all.each do |i|
       puts "1. #{i.name} -- #{i.date} -- #{i.city}"
+    end
     #@event = RaEvents::Event.new_from_url
     #puts "1. #{@event.name} -- #{@event.date} -- #{@event.city}"
     #puts "2. event_name_1 -- date_1 -- city_1"
