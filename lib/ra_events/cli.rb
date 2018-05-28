@@ -4,6 +4,7 @@ class RaEvents::CLI
   @event_list = []
   @state_url = nil
   
+# Initiates the program in ./bin/ra_events
   def call
     puts
     puts "Welcome to the Resident Advisor Event Finder!"
@@ -14,10 +15,21 @@ class RaEvents::CLI
     start
   end
   
+# Main events of CLI interaction
   def start
     search_by_state
     select_event
     option_menu
+  end
+
+# Gets user_input of a state name
+# Returns a formatted version of the state name to be interpolated into URL by Scraper
+  def search_by_state
+    puts "Please enter the name of the state where you would like to see a show: "
+    input = gets.strip
+    state = input_to_state(input)
+    event_list(state)
+    event_list_display
   end
   
   def input_to_state(input)
@@ -53,16 +65,7 @@ class RaEvents::CLI
     end
     state
   end
-      
-  def search_by_state
-    puts "Please enter the name of the state where you would like to see a show: "
-    input = gets.strip
-    state = input_to_state(input)
-    event_list(state)
-    event_list_display
-    #if input is a valid state name, then method will return event_list
-    #if input is not valid, user will be asked to try again
-  end
+    
   
   def url_creator(state)
     date = Time.now.strftime("%Y-%m-%d")
