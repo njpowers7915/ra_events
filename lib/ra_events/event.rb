@@ -20,6 +20,10 @@ class RaEvents::Event
     @@all
   end
   
+  def self.reset
+    @@all = []
+  end
+  
   def self.find(input)
     @@all[input - 1]
   end

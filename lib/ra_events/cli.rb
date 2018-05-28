@@ -35,7 +35,6 @@ class RaEvents::CLI
   end
   
   def valid_state?(state)
-    # True if input matches an actual US state name
     STATES.include?(state)
   end
   
@@ -43,9 +42,9 @@ class RaEvents::CLI
     puts "Enter 1 for Washington (state)"
     puts "Enter 2 for Washington DC"
     user_choice = gets.strip
-    if user_choice == 1
+    if user_choice == "1"
       state = "washingtonstate"
-    elsif user_choice == 2
+    elsif user_choice == "2"
       state = "washingtondc"
     else
       puts "Invalid"
@@ -57,11 +56,10 @@ class RaEvents::CLI
   def search_by_state
     puts "Please enter the name of the state where you would like to see a show: "
     input = gets.strip
-    input_to_state(input)
+    state = input_to_state(input)
     event_list(state)
     #if input is a valid state name, then method will return event_list
     #if input is not valid, user will be asked to try again
-    end
   end
   
   def url_creator(state)
@@ -74,6 +72,7 @@ class RaEvents::CLI
     #Will plug state into a URL and send that off to Scraper
     #Scraper will return results
     #Event.new_from_url will need url argument
+    RaEvents::Event.reset
     url_creator(state)
     RaEvents::Scraper.new.make_events
     RaEvents::Event.all.each do |i|
