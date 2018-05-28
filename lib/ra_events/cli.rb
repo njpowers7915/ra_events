@@ -75,8 +75,10 @@ class RaEvents::CLI
     RaEvents::Event.reset
     url_creator(state)
     RaEvents::Scraper.new.make_events
+    count = 1
     RaEvents::Event.all.each do |i|
-      puts "1. #{i.name} -- #{i.date} -- #{i.city}"
+      puts "#{count}. #{i.name} -- #{i.date} -- #{i.city}"
+      count += 1
     end
     #@event = RaEvents::Event.new_from_url
     #puts "1. #{@event.name} -- #{@event.date} -- #{@event.city}"
