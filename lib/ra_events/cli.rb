@@ -19,17 +19,25 @@ class RaEvents::CLI
     option_menu
   end
   
-  def search_by_state
-    puts "Please enter the name of the state where you would like to see a show: "
-    input = gets.strip.downcase.gsub(/\s+/, "")
-    if valid_state?(input) == false
+  def input_to_state(input)
+    state = input.downcase.gsub(/\s+/, "")
+    if valid_state?(state) == false
       puts "Invalid state name"
       sleep(1)
       puts
       search_by_state
     else
-      state = input
-      event_list(state)
+      state
+    end
+    state
+  end
+      
+  
+  def search_by_state
+    puts "Please enter the name of the state where you would like to see a show: "
+    input = gets.strip
+    input_to_state(input)
+    event_list(state)
     #if input is a valid state name, then method will return event_list
     #if input is not valid, user will be asked to try again
     end
