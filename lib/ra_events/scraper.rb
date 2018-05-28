@@ -8,10 +8,15 @@ class RaEvents::Scraper
     url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
   end
   
+#Returns HTML from URL to allow for scraping
+  def get_page(url)
+    Nokogiri::HTML(open(url))
+  end
+  
 # Scraper scrapes for events from interpolated state url
 # Returns list of event_urls to be scraped for details
-  def scrape_for_events(url)
-    
+  def get_page(url)
+    Nokogiri::HTML(open(url))
   end
   
 # Scraper scrapes for event details from event url

@@ -42,8 +42,8 @@ class RaEvents::Event
     @city
   end
   
-  def url
-    @url
+  def website_url
+    @website_url
   end
   
   def venue
