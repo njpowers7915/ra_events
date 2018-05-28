@@ -16,7 +16,7 @@ class RaEvents::Scraper
 # Scraper scrapes for events from interpolated state url
 # Returns list of event_urls to be scraped for details
   def scrape_events_by_state(url)
-    get_page = Nokogiri::HTML(open(url))
+    @get_page = Nokogiri::HTML(open(url))
     #html = File.read(url)
     #text = Nokogiri::HTML(html)
     event_list = []
