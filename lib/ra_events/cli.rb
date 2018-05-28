@@ -92,16 +92,16 @@ class RaEvents::CLI
       select_event
     else
       event_details(input)
-    #if input is valid, then method will return event_details
-    #if input is not valid, user will be asked to try again
     end
   end
   
+#Checks to make sure user inputs valid number
   def valid_number?(input)
-# True if input is less than the length of the event list
     input.to_i > 0 && input.to_i <= RaEvents::Event.all.length
   end
   
+#Accepts user input
+#Returns list of all event details
   def event_details(input)
     puts "Event Details"
     puts "-------------"
@@ -116,22 +116,22 @@ class RaEvents::CLI
     puts "Minimum Age: #{event.min_age}"
     puts "Ticket URL: #{event.ticket_url}"
   end
-        
+       
+#Lets user go-back, search by another state, or quit
   def option_menu
-    #returns list of options for user to select
     sleep(2)
     puts "To return to the event list, enter '1'"
     puts "To select another state, enter '2'"
-    puts "To exit the app, enter 'exit'"
+    puts "To leave the app, enter 'quit'"
     input = gets.strip
     if input.to_i == 1
-      event_list_display
+      event_list
       select_event
       option_menu
     elsif input.to_i == 2
-      event_list_reset
+      RaEvents::Event.reset
       start
-    elsif input == "exit"
+    elsif input == "quit"
       quit?(input)
     else
       puts "Invalid entry"
@@ -140,13 +140,9 @@ class RaEvents::CLI
   end
   
   def quit?(input)
-    if input == "quit"
+    if input.downcase == "quit"
       exit!
     end
-  end
-  
-  def event_list_reset
-    @event_list = []
   end
   
   STATES = ["alabama", "alaska", "arizona", "arkansas", "california", "colorado", "delaware", "florida", "georgia", "hawaii", "idaho", "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maine", "maryland", "massachusetts", "michigan", "minnesota", "mississippi", "missouri", "montana", "nebraska", "nevada", "newhampshire", "newjersey", "newmexico", "newyork", "northcarolina", "northdakota", "ohio", "oklahoma", "oregon", "pennsylvania", "rhodeisland", "southcarolina", "southdakota", "tennessee", "texas", "utah", "vermont", "virginia", "washington", "westvirginia", "wisconsin", "wyoming"]
