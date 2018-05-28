@@ -22,13 +22,13 @@ class RaEvents::Scraper
   
 # Scraper scrapes for event details from event url
 # Returns array of hashes to be made into Event objects
-  def scrape_event_details(event_list)
-    event_list.each do |i|
-      #SCRAPE FOR ALL DETAILS
-    end
+ # def scrape_event_details(event_list)
+ #   event_list = scrape_events_by_state(url)
+ #   event_list.each do |i|
+ #     RaEvents::Event.new_from_state_page(i)
+ #   end
     #return array of hashes
-    
-  end
+ # end
   
 # Takes in array of hashes containing event details
 # Returns array of event objects
