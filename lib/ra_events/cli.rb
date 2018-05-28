@@ -1,7 +1,7 @@
 require 'pry'
 
 class RaEvents::CLI
-  @event = nil
+  @event_list = []
   
   def call
     puts
@@ -74,7 +74,6 @@ class RaEvents::CLI
     end
   end
   
-  @event_list = []
   def event_list(state)
     #list of events in a particular state
     #Will plug state into a URL and send that off to Scraper
@@ -139,6 +138,7 @@ class RaEvents::CLI
       select_event
       option_menu
     elsif input.to_i == 2
+      event_list_reset
       start
     elsif input == "exit"
       quit?(input)
@@ -152,6 +152,10 @@ class RaEvents::CLI
     if input == "quit"
       exit!
     end
+  end
+  
+  def event_list_reset
+    @event_list = []
   end
   
   STATES = ["alabama", "alaska", "arizona", "arkansas", "california", "colorado", "delaware", "florida", "georgia", "hawaii", "idaho", "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maine", "maryland", "massachusetts", "michigan", "minnesota", "mississippi", "missouri", "montana", "nebraska", "nevada", "newhampshire", "newjersey", "newmexico", "newyork", "northcarolina", "northdakota", "ohio", "oklahoma", "oregon", "pennsylvania", "rhodeisland", "southcarolina", "southdakota", "tennessee", "texas", "utah", "vermont", "virginia", "washington", "westvirginia", "wisconsin", "wyoming"]
