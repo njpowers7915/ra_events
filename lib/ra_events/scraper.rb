@@ -15,11 +15,11 @@ class RaEvents::Scraper
     Nokogiri::HTML(open("state_url"))
   
   
-  def make_events
+  #def make_events
     #Takes an array of scraped events. For each event in the array, a new Event object is created.
-    EVENT_ARRAY.each do |i|
+  #  EVENT_ARRAY.each do |i|
       RaEvents::Event.new_from_url(i)
-    end
-  end
+  #  end
+  #end
   
 end
