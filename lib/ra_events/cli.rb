@@ -58,6 +58,7 @@ class RaEvents::CLI
     input = gets.strip
     state = input_to_state(input)
     event_list(state)
+    event_list_display
     #if input is a valid state name, then method will return event_list
     #if input is not valid, user will be asked to try again
   end
@@ -67,6 +68,13 @@ class RaEvents::CLI
     url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
   end
   
+  def event_list_display
+    @event_list.each do |i|
+      puts i
+    end
+  end
+  
+  @event_list = []
   def event_list(state)
     #list of events in a particular state
     #Will plug state into a URL and send that off to Scraper
@@ -77,13 +85,11 @@ class RaEvents::CLI
     RaEvents::Scraper.new.make_events
     count = 1
     RaEvents::Event.all.each do |i|
-      puts "#{count}. #{i.name} -- #{i.date} -- #{i.city}"
+      event =  "#{count}. #{i.name} -- #{i.date} -- #{i.city}"
+      @event_list.nil? ? @event_list = [event] : @event_list << [event]
       count += 1
     end
-    #@event = RaEvents::Event.new_from_url
-    #puts "1. #{@event.name} -- #{@event.date} -- #{@event.city}"
-    #puts "2. event_name_1 -- date_1 -- city_1"
-    #puts "3. event_name_1 -- date_1 -- city_1"
+    @event_list
   end
   
   def select_event
@@ -102,22 +108,23 @@ class RaEvents::CLI
   end
   
   def valid_number?(input)
-    # True if input is not greater than the length of the event list
+# True if input is less than the length of the event list
     input.to_i > 0 && input.to_i <= RaEvents::Event.all.length
   end
   
   def event_details(input)
-    puts "Here are the event details"
-  #  event = RaEvents::Event.find(input.to_i)
+    puts "Event Details"
+    puts "-------------"
+    event = RaEvents::Event.find(input.to_i)
     #list of event attriburtes
-  #  puts "#{event.name}"
-    #puts "#{event.url}"
-  #  puts "#{event.date}"
-  #  puts "#{event.city}"
-    #puts "#{event.venue}"
-    #puts "Cost: #{event.price}"
-    #puts "Minimum Age: #{event.min_age}"
-    #puts "Ticket URL: #{event.ticket_url}"
+    puts "#{event.name}"
+    puts "#{event.url}"
+    puts "#{event.date}"
+    puts "#{event.city}"
+    puts "#{event.venue}"
+    puts "Ticket Price: #{event.price}"
+    puts "Minimum Age: #{event.min_age}"
+    puts "Ticket URL: #{event.ticket_url}"
   end
         
   def option_menu
@@ -128,7 +135,9 @@ class RaEvents::CLI
     puts "To exit the app, enter 'exit'"
     input = gets.strip
     if input.to_i == 1
-      event_list(state)
+      event_list_display
+      select_event
+      option_menu
     elsif input.to_i == 2
       start
     elsif input == "exit"
@@ -148,23 +157,3 @@ class RaEvents::CLI
   STATES = ["alabama", "alaska", "arizona", "arkansas", "california", "colorado", "delaware", "florida", "georgia", "hawaii", "idaho", "illinois", "indiana", "iowa", "kansas", "kentucky", "louisiana", "maine", "maryland", "massachusetts", "michigan", "minnesota", "mississippi", "missouri", "montana", "nebraska", "nevada", "newhampshire", "newjersey", "newmexico", "newyork", "northcarolina", "northdakota", "ohio", "oklahoma", "oregon", "pennsylvania", "rhodeisland", "southcarolina", "southdakota", "tennessee", "texas", "utah", "vermont", "virginia", "washington", "westvirginia", "wisconsin", "wyoming"]
     
 end
-
-# CLI series of Events
-
-#call
-#  Welcome user
-#  Please enter name of state where you'd like to see show
-  
-#  User inputs name of state
-  
-#  returns list of events
-#  puts "Please pick an event"
-  
-#  User inputs number corresponding to an event
-  
-#  returns event attributes
-  
-#  returns list of options for user to select
-#  1. return to event list?
-#  2. choose a different state?
-#  3. quit?

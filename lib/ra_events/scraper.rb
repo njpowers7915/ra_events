@@ -3,7 +3,7 @@ class RaEvents::Scraper
   EVENT_ARRAY = [["name1", "date1", "city1"], ["name2", "date2", "city2"]]
   
  # def get_page
-#    url = url_creator(state)
+#    url = RaEvents::CLI.url_creator(state)
  #   Nokogiri::HTML(open(url))
 #  end
   

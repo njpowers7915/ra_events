@@ -1,6 +1,6 @@
 class RaEvents::Event
   
-  attr_accessor :name, :date, :city, :url, :venue, :ticket_url, :cost, :min_age
+  attr_accessor :name, :date, :city, :url, :venue, :ticket_url, :price, :min_age
   
   @@all = []
   
@@ -40,8 +40,8 @@ class RaEvents::Event
     @ticket_url
   end
   
-  def cost
-    @cost
+  def price
+    @price
   end
   
   def min_age
