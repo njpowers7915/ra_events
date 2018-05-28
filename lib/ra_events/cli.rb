@@ -29,7 +29,7 @@ class RaEvents::CLI
     puts "Please enter the name of the state where you would like to see a show: "
     input = gets.strip
     state = input_to_state(input)
-    event_array = RaEvents::Scraper.new.make_events(state)
+    RaEvents::Scraper.new.make_events(state)
     event_list
   end
   

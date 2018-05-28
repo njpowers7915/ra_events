@@ -16,10 +16,11 @@ class RaEvents::Scraper
 # Scraper scrapes for events from interpolated state url
 # Returns list of event_urls to be scraped for details
   def scrape_events_by_state(url)
-    html = File.read(url)
-    text = Nokogiri::HTML(html)
+    get_page = Nokogiri::HTML(open(url))
+    #html = File.read(url)
+    #text = Nokogiri::HTML(html)
     event_list = []
-    text.css("h1.event-title").each do |i|
+    self.get_page.css("h1.event-title").each do |i|
       event_url = i.css("a").attribute("href").value
       event_list << event_url
     end
@@ -29,9 +30,8 @@ class RaEvents::Scraper
     
     
     
-    #@get_page = Nokogiri::HTML(open(url))
+    
     #self.get_page.css(#CSS GOES HERE)
-  end
   
 # Scraper scrapes for event details from event url
 # Returns array of hashes to be made into Event objects
@@ -52,6 +52,7 @@ class RaEvents::Scraper
       RaEvents::Event.new_from_state_url(i)
     end
   end
+end
     
     
  #   Takes an array of scraped events. For each event in the array, a new Event object is created.
@@ -70,6 +71,3 @@ class RaEvents::Scraper
 #  def self.find_event_url
 #    state_url = RaEvents::CLI.state_url
 #    Nokogiri::HTML(open("state_url"))
-
-  
-end
