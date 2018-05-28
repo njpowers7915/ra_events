@@ -5,9 +5,9 @@ class RaEvents::Event
   @@all = []
   
   
-  def self.new_from_state_url(state_url)
+  def self.new_from_state_url(i)
     self.new(
-      "state_url.#<CSS GOES HERE>"
+      "https://www.residentadvisor.net#{i}"
       )
   end
   
