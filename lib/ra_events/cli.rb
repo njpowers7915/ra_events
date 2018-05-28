@@ -26,6 +26,16 @@ class RaEvents::CLI
       sleep(1)
       puts
       search_by_state
+    elsif state == "washington"
+      puts "Enter 1 for Washington (state)"
+      puts "Enter 2 for Washington DC"
+      user_choice = gets.strip
+      if user_choice = 1
+        state = "washingtonstate"
+      elsif user_choice = 2
+        state = "washingtondc"
+      else
+        puts "Invalid"
     else
       state
     end
