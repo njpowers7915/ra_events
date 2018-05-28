@@ -7,7 +7,7 @@ class RaEvents::Event
   
   def self.new_from_state_url(state_url)
     self.new(
-      state_url.#<CSS GOES HERE>
+      "state_url.#<CSS GOES HERE>"
       )
   end
   
@@ -35,31 +35,31 @@ class RaEvents::Event
   end
   
   def name
-    @name
+    @name ||= doc.css('') #.text?
   end
   
   def city
-    @city
+    @city ||= doc.css('') #.text?
   end
   
   def website_url
-    @website_url
+    @website_url ||= doc.css('') #.text?
   end
   
   def venue
-    @venue
+    @venue ||= doc.css('') #.text?
   end
   
   def ticket_url
-    @ticket_url
+    @ticket_url ||= doc.css('') #.text?
   end
   
   def price
-    @price
+    @price ||= doc.css('') #.text?
   end
   
   def min_age
-    @min_age
+    @min_age ||= doc.css('') #.text?
   end
   
 end
