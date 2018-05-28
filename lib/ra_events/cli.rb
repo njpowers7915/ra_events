@@ -34,6 +34,11 @@ class RaEvents::CLI
     state
   end
   
+  def valid_state?(state)
+    # True if input matches an actual US state name
+    STATES.include?(state)
+  end
+  
   def washington_special_case
     puts "Enter 1 for Washington (state)"
     puts "Enter 2 for Washington DC"
@@ -49,7 +54,6 @@ class RaEvents::CLI
     state
   end
       
-  
   def search_by_state
     puts "Please enter the name of the state where you would like to see a show: "
     input = gets.strip
@@ -60,16 +64,9 @@ class RaEvents::CLI
     end
   end
   
-  def url_creator(input)
-    state = input.downcase.gsub(/\s+/, "")
+  def url_creator(state)
     date = Time.now.strftime("%Y-%m-%d")
     url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
-  end
-  
-  def valid_state?(input)
-    # True if valid url can be made from input
-    # Need to make a special step for "Washington". URL's on RA website are "washingtondc" or "washingtonstate"
-    true
   end
   
   def event_list(state)
@@ -77,6 +74,7 @@ class RaEvents::CLI
     #Will plug state into a URL and send that off to Scraper
     #Scraper will return results
     #Event.new_from_url will need url argument
+    url_creator(state)
     RaEvents::Scraper.new.make_events
     RaEvents::Event.all.each do |i|
       puts "1. #{i.name} -- #{i.date} -- #{i.city}"
