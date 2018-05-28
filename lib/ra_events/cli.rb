@@ -72,12 +72,6 @@ class RaEvents::CLI
     end
     state
   end
-    
-  
-  def url_creator(state)
-    date = Time.now.strftime("%Y-%m-%d")
-    url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
-  end
   
   def event_list_display
     @event_list.each do |i|

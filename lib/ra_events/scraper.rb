@@ -4,7 +4,8 @@ class RaEvents::Scraper
   
 # Scraper receives state name from CLI to convert into a url
   def state_url(state)
-    
+    date = Time.now.strftime("%Y-%m-%d")
+    url = "https://www.residentadvisor.net/events/us/#{state}/month/#{date}"
   end
   
 # Scraper scrapes for events from interpolated state url
