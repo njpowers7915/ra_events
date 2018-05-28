@@ -9,10 +9,8 @@ class RaEvents::Event
     self.new(array[0], array[1], array[2])
   end
   
-  def initialize(name, date, city)
-    @name = name
-    @date = date
-    @city = city
+  def initialize(url)
+    @url = url
     @@all << self
   end
   
@@ -26,6 +24,14 @@ class RaEvents::Event
   
   def self.find(input)
     @@all[input - 1]
+  end
+  
+  def name
+    @name
+  end
+  
+  def city
+    @city
   end
   
   def url
