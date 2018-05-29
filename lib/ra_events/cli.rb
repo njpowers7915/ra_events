@@ -42,7 +42,7 @@ class RaEvents::CLI
       puts
       search_by_state
     elsif state == "washington"
-      washington_special_case
+      state = washington_special_case
     else
       state
     end
@@ -80,6 +80,7 @@ class RaEvents::CLI
       if i.city != "TBA"
         puts "#{i.city}"
       end
+      puts
       count += 1
     end
   end
@@ -105,6 +106,7 @@ class RaEvents::CLI
 # Returns all details of specified event
   def select_event
     puts "Please enter event number"
+    puts
     input = gets.strip
     if valid_number?(input) == false
       puts "Invalid number"
@@ -133,11 +135,12 @@ class RaEvents::CLI
     puts "-------------"
     puts "#{event.url}"
     puts "-------------"
-    puts "#{event.venue}"
-    puts "#{event.city}"
+    puts "Venue: #{event.venue}"
+    puts "City: #{event.city}"
     puts "-------------"
     puts "Ticket Price: #{event.price}"
     puts "Minimum Age: #{event.min_age}"
+    puts
   end
        
 #Lets user go-back, search by another state, or quit
