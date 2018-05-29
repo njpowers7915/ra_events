@@ -84,18 +84,21 @@ class RaEvents::CLI
       @count += 1
     end
     @count
-    #end
   end
 
-
+#Returns the number of events for each state search.
+#This is helper method for signaling states with 0 events
   def event_count
     event_count = @count - 1
   end
   
+#Returns true if state has zero events coming up
   def zero_events?
     self.event_count == 0
   end
   
+#States with 0 events get a special options menu
+#These states skip the step of the process that dives into finding event details.
   def zero_events_option_menu
     sleep(1)
     puts
