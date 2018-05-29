@@ -30,7 +30,7 @@ class RaEvents::CLI
     input = gets.strip
     state = input_to_state(input)
     RaEvents::Scraper.new.make_events(state)
-    event_list
+    test_event_list
   end
   
 # Takes in user input of a state name
@@ -79,6 +79,23 @@ class RaEvents::CLI
       count += 1
     end
   end
+
+#This is a test method to make sure scraping is pulling correct data 
+ def test_event_list
+    count = 1
+    RaEvents::Event.all.each do |i|
+      puts "count = #{count}" 
+      puts "name = #{i.name}"
+      puts "date = #{i.date}"
+      puts "city = #{i.city}"
+      puts "url = #{i.url}"
+      puts "venue = #{i.venue}"
+      puts "ticket_url = #{i.ticket_url}"
+      puts "price = #{i.price}"
+      puts "min_age = #{i.min_age}"
+      count += 1
+    end
+  end 
   
 # User selects event from the event list
 # Returns all details of specified event
