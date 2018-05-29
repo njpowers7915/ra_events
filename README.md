@@ -1,8 +1,7 @@
 # RaEvents
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ra_events`. To experiment with that code, run `bin/console` for an interactive prompt.
+This Ruby Gem provides a CLI to search for electronic music events in your state. The Gem allows you to select individual events to look up important details as listed on the website, "www.residentadvisor.net".
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -22,7 +21,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the below and then follow the on screen prompts.
+
+    $ ra_events
 
 ## Development
 
@@ -37,7 +38,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/'njpow
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the RaEvents project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/'njpowers7915'/ra_events/blob/master/CODE_OF_CONDUCT.md).
