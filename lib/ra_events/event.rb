@@ -56,8 +56,8 @@ class RaEvents::Event
   #end
   
   def venue
-    venue_data ||= doc.css('ul.clearfix').css('li.wide').text
-    if venue_data.downcase.include?("tba")
+    venue_data ||= doc.css('ul.clearfix').css('li.wide').css('a')[0].text
+    if venue_data.downcase.include?("tba") || venue_data == nil || self.city == "TBA"
       @venue = "TBA"
     else
       @venue = venue_data
