@@ -68,13 +68,18 @@ class RaEvents::Event
     price_data ||= doc.css('ul.clearfix').css('li')[2].text
     if price_data != nil
       @price = price_data.split("/")[-1]
+    else
+      @price = "???"
     end
+    
   end
   
   def min_age
     age_data ||= doc.css('ul.clearfix').css('li')[3].text
     if age_data != nil
       @min_age = age_data.split("/")[-1]
+    else
+      @min_age = "N/A"
     end
   end
   

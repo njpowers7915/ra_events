@@ -10,7 +10,6 @@ class RaEvents::CLI
     puts "Welcome to the Resident Advisor Event Finder!"
     puts
     sleep(2)
-    #puts "Overview of basic commands eg quit, new_state, etc..."
     puts
     start
   end
@@ -30,7 +29,7 @@ class RaEvents::CLI
     input = gets.strip
     state = input_to_state(input)
     RaEvents::Scraper.new.make_events(state)
-    test_event_list
+    event_list
   end
   
 # Takes in user input of a state name
@@ -75,28 +74,32 @@ class RaEvents::CLI
   def event_list
     count = 1
     RaEvents::Event.all.each do |i|
-      puts "#{count}. #{i.name} -- #{i.date} -- #{i.city}"
-      puts
+      puts "#{count} -->" 
+      puts "#{i.name}"
+      puts "#{i.date}"
+      if i.city != "TBA"
+        puts "#{i.city}"
+      end
       count += 1
     end
   end
 
 #This is a test method to make sure scraping is pulling correct data 
- def test_event_list
-    count = 1
-    RaEvents::Event.all.each do |i|
-      puts "count = #{count}" 
-      puts "name = #{i.name}"
-      puts "date = #{i.date}"
-      puts "city = #{i.city}"
-      puts "url = #{i.url}"
-      puts "venue = #{i.venue}"
-      puts "price = #{i.price}"
-      puts "min_age = #{i.min_age}"
-      puts
-      count += 1
-    end
-  end 
+ #def test_event_list
+  #  count = 1
+  #  RaEvents::Event.all.each do |i|
+  #    puts "count = #{count}" 
+  #    puts "name = #{i.name}"
+  #    puts "date = #{i.date}"
+  #    puts "city = #{i.city}"
+  #    puts "url = #{i.url}"
+  #    puts "venue = #{i.venue}"
+  #    puts "price = #{i.price}"
+  #    puts "min_age = #{i.min_age}"
+  #    puts
+  #    count += 1
+  #  end
+  #end 
   
 # User selects event from the event list
 # Returns all details of specified event
@@ -126,12 +129,15 @@ class RaEvents::CLI
     event = RaEvents::Event.find(input.to_i)
     #list of event attriburtes
     puts "#{event.name}"
+    puts "#{event.date}"
+    puts "-------------"
     puts "#{event.url}"
-    #puts "#{event.date}"
+    puts "-------------"
+    puts "#{event.venue}"
     puts "#{event.city}"
-   # puts "#{event.venue}"
-    #puts "Ticket Price: #{event.price}"
-   # puts "Minimum Age: #{event.min_age}"
+    puts "-------------"
+    puts "Ticket Price: #{event.price}"
+    puts "Minimum Age: #{event.min_age}"
   end
        
 #Lets user go-back, search by another state, or quit
