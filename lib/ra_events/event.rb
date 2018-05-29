@@ -35,11 +35,15 @@ class RaEvents::Event
   end
   
   def name
-    @name ||= doc.css('header').css('h1').text
+    @name ||= doc.css('header').css('h1')[0].text
+  end
+  
+  def date
+    @date ||= doc.css('ul.clearfix').css('a')[0].text
   end
   
   def city
-    @city ||= doc.css('li.wide').content
+    @city ||= doc.css('ul.clearfix').css('li.wide').text
   end
   
   #def website_url
