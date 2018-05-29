@@ -72,16 +72,41 @@ class RaEvents::CLI
   
 #Creates a list of all events in a given state with some basic details
   def event_list
-    count = 1
-    RaEvents::Event.all.each do |i|
-      puts "#{count} -->" 
-      puts "#{i.name}"
-      puts "#{i.date}"
-      if i.city != "TBA"
-        puts "#{i.city}"
+    if zero_events?
+      zero_events_option_menu
+    else
+      count = 1
+      RaEvents::Event.all.each do |i|
+        puts "#{count} -->" 
+        puts "#{i.name}"
+        puts "#{i.date}"
+        if i.city != "TBA"
+          puts "#{i.city}"
+        end
+        puts
+        count += 1
       end
-      puts
-      count += 1
+    end
+  end
+  
+  def zero_events?
+    RaEvents::Event.all = []
+  end
+  
+  def zero_events_option_menu
+    sleep(1)
+    puts
+    puts "To select another state, enter '1'"
+    puts "To leave the app, enter 'quit'"
+    input = gets.strip
+    if input.to_i == 1
+      RaEvents::Event.reset
+      start
+    elsif input == "quit"
+      quit?(input)
+    else
+      puts "Invalid entry"
+      option_menu
     end
   end
 
