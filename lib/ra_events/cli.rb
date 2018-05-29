@@ -76,6 +76,7 @@ class RaEvents::CLI
     count = 1
     RaEvents::Event.all.each do |i|
       puts "#{count}. #{i.name} -- #{i.date} -- #{i.city}"
+      puts
       count += 1
     end
   end
@@ -93,6 +94,7 @@ class RaEvents::CLI
       puts "ticket_url = #{i.ticket_url}"
       puts "price = #{i.price}"
       puts "min_age = #{i.min_age}"
+      puts
       count += 1
     end
   end 

@@ -50,20 +50,20 @@ class RaEvents::Event
   #  @website_url ||= doc.css('li.wide').css('a') #.text?
   #end
   
-  #def venue
-  #  @venue ||= doc.css('li.wide') #.text?
-  #end
+  def venue
+    @venue ||= doc.css('ul.clearfix').css('li.wide').text
+  end
   
  # def ticket_url
  #   @ticket_url ||= doc.css('li.wide') #.text?
  # end
   
- # def price
- #   @price ||= doc.css('li.wide') #.text?
- # end
+  def price
+    @price ||= doc.css('ul.clearfix').css('li')[2].text
+  end
   
-  #def min_age
-  #  @min_age ||= doc.css('li.wide') #.text?
- # end
+  def min_age
+    @min_age ||= doc.css('ul.clearfix').css('li')[3].text
+  end
   
 end
