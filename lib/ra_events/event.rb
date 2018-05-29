@@ -1,6 +1,6 @@
 class RaEvents::Event
   
-  attr_accessor :name, :date, :city, :url, :venue, :ticket_url, :price, :min_age
+  attr_accessor :name, :date, :city, :url, :venue, :price, :min_age
   
   @@all = []
   
@@ -43,7 +43,12 @@ class RaEvents::Event
   end
   
   def city
-    @city ||= doc.css('ul.clearfix').css('li.wide').text
+    city_data ||= doc.css('ul.clearfix').css('li.wide').text
+    if city_data.downcase.include?("tba")
+      @city = "TBA"
+    else
+      @city = city_data.split(", ")[-2]
+    end
   end
   
   #def website_url
@@ -51,19 +56,26 @@ class RaEvents::Event
   #end
   
   def venue
-    @venue ||= doc.css('ul.clearfix').css('li.wide').text
+    venue_data ||= doc.css('ul.clearfix').css('li.wide').text
+    if venue_data.downcase.include?("tba")
+      @venue = "TBA"
+    else
+      @venue = venue_data
+    end
   end
   
- # def ticket_url
- #   @ticket_url ||= doc.css('li.wide') #.text?
- # end
-  
   def price
-    @price ||= doc.css('ul.clearfix').css('li')[2].text
+    price_data ||= doc.css('ul.clearfix').css('li')[2].text
+    if price_data != nil
+      @price = price_data.split("/")[-1]
+    end
   end
   
   def min_age
-    @min_age ||= doc.css('ul.clearfix').css('li')[3].text
+    age_data ||= doc.css('ul.clearfix').css('li')[3].text
+    if age_data != nil
+      @min_age = age_data.split("/")[-1]
+    end
   end
   
 end

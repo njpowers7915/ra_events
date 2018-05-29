@@ -91,7 +91,6 @@ class RaEvents::CLI
       puts "city = #{i.city}"
       puts "url = #{i.url}"
       puts "venue = #{i.venue}"
-      puts "ticket_url = #{i.ticket_url}"
       puts "price = #{i.price}"
       puts "min_age = #{i.min_age}"
       puts
@@ -133,7 +132,6 @@ class RaEvents::CLI
    # puts "#{event.venue}"
     #puts "Ticket Price: #{event.price}"
    # puts "Minimum Age: #{event.min_age}"
-   # puts "Ticket URL: #{event.ticket_url}"
   end
        
 #Lets user go-back, search by another state, or quit
