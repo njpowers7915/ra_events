@@ -72,25 +72,28 @@ class RaEvents::CLI
   
 #Creates a list of all events in a given state with some basic details
   def event_list
-    if zero_events?
-      zero_events_option_menu
-    else
-      count = 1
-      RaEvents::Event.all.each do |i|
-        puts "#{count} -->" 
-        puts "#{i.name}"
-        puts "#{i.date}"
-        if i.city != "TBA"
-          puts "#{i.city}"
-        end
-        puts
-        count += 1
+    @count = 1
+    RaEvents::Event.all.each do |i|
+      puts "#{@count} -->" 
+      puts "#{i.name}"
+      puts "#{i.date}"
+      if i.city != "TBA"
+        puts "#{i.city}"
       end
+      puts
+      @count += 1
     end
+    @count
+    #end
+  end
+
+
+  def event_count
+    event_count = @count - 1
   end
   
   def zero_events?
-    RaEvents::Event.all = []
+    self.event_count == 0
   end
   
   def zero_events_option_menu
@@ -106,7 +109,7 @@ class RaEvents::CLI
       quit?(input)
     else
       puts "Invalid entry"
-      option_menu
+      zero_events_option_menu
     end
   end
 
@@ -130,16 +133,24 @@ class RaEvents::CLI
 # User selects event from the event list
 # Returns all details of specified event
   def select_event
-    puts "Please enter event number"
-    puts
-    input = gets.strip
-    if valid_number?(input) == false
-      puts "Invalid number"
+    if zero_events?
       sleep(1)
       puts
-      select_event
+      puts "There are no upcoming events in the state you selected."
+      puts
+      zero_events_option_menu
     else
-      event_details(input)
+      puts "Please enter event number"
+      puts
+      input = gets.strip
+      if valid_number?(input) == false
+        puts "Invalid number"
+        sleep(1)
+        puts
+        select_event
+      else
+        event_details(input)
+      end
     end
   end
   
@@ -170,23 +181,25 @@ class RaEvents::CLI
        
 #Lets user go-back, search by another state, or quit
   def option_menu
-    sleep(2)
-    puts "To return to the event list, enter '1'"
-    puts "To select another state, enter '2'"
-    puts "To leave the app, enter 'quit'"
-    input = gets.strip
-    if input.to_i == 1
-      event_list
-      select_event
-      option_menu
-    elsif input.to_i == 2
-      RaEvents::Event.reset
-      start
-    elsif input == "quit"
-      quit?(input)
-    else
-      puts "Invalid entry"
-      option_menu
+    if zero_events? == false
+      sleep(2)
+      puts "To return to the event list, enter '1'"
+      puts "To select another state, enter '2'"
+      puts "To leave the app, enter 'quit'"
+      input = gets.strip
+      if input.to_i == 1
+        event_list
+        select_event
+        option_menu
+      elsif input.to_i == 2
+        RaEvents::Event.reset
+        start
+      elsif input == "quit"
+        quit?(input)
+      else
+        puts "Invalid entry"
+        option_menu
+      end
     end
   end
   
