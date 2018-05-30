@@ -35,11 +35,11 @@ class RaEvents::Event
   end
   
   def name
-    @name ||= doc.css('header').css('h1')[0].text.strip
+    @name ||= doc.css('header').css('h1')[0].text
   end
   
   def date
-    @date ||= doc.css('ul.clearfix').css('a')[0].text.strip
+    @date ||= doc.css('ul.clearfix').css('a')[0].text
   end
   
   def city
@@ -47,7 +47,7 @@ class RaEvents::Event
     if city_data.downcase.include?("tba")
       @city = "TBA"
     else
-      @city = city_data.split(", ")[-2].strip
+      @city = city_data.split(", ")[-2]
     end
   end
   
@@ -60,14 +60,14 @@ class RaEvents::Event
     if venue_data.downcase.include?("tba") || venue_data == nil || self.city == "TBA"
       @venue = "TBA"
     else
-      @venue = venue_data.strip
+      @venue = venue_data
     end
   end
   
   def price
     price_data ||= doc.css('ul.clearfix').css('li')[2].text
     if price_data != nil
-      @price = price_data.split("/")[-1].strip
+      @price = price_data.split("/")[-1]
     else
       @price = "???"
     end

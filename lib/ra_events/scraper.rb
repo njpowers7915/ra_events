@@ -17,8 +17,6 @@ class RaEvents::Scraper
 # Returns list of event_urls to be scraped for details
   def scrape_events_by_state(url)
     @get_page = Nokogiri::HTML(open(url))
-    #html = File.read(url)
-    #text = Nokogiri::HTML(html)
     event_list = []
     self.get_page.css("h1.event-title").each do |i|
       event_url = i.css("a").attribute("href").value
