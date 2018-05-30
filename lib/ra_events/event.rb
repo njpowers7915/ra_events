@@ -77,7 +77,7 @@ class RaEvents::Event
   def min_age
     age_data ||= doc.css('ul.clearfix').css('li')[3].text
     if age_data != nil
-      @min_age = age_data.split("/")[-1].strip
+      @min_age = age_data.split("/")[-1]
     else
       @min_age = "N/A"
     end
