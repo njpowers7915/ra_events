@@ -1,5 +1,7 @@
 # RaEvents
 
+UPDATE UPDATE
+
 This Ruby CLI app lets you search for electronic music events in your state. The app allows you to select individual events to look up important details as listed on the website, "www.residentadvisor.net".
 
 
