@@ -1,17 +1,29 @@
 # RaEvents
 
-UPDATE UPDATE
-
 This Ruby CLI app lets you search for electronic music events in your state. The app allows you to select individual events to look up important details as listed on the website, "www.residentadvisor.net".
 
 
 ## Installation and Usage
 
-Clone this repo in order to access the app. Once you've navigated into the ra_events directory run:
+1. Install Ruby if its not already installed on your computer
+
+    $ brew install ruby
+
+2. Use the bundler gem to easily load all gem dependencies
+
+    $ gem install bundler
+    $ bundle install
+
+3. Clone this repo and navigate into the ra_events directory
+
+    $ git clone https://github.com/njpowers7915/ra_events
+    $ cd ra_events
+
+4. Run the following command to start the CLI application
 
     $ ./bin/ra_events
 
-...then follow the prompts to find events near you!
+5. Follow the prompts to find concerts and shows near you!
 
 ## Development
 
@@ -22,7 +34,3 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/'njpowers7915'/ra_events. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
